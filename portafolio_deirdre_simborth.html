@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deirdre Simborth | Auxiliar de Vuelo</title>
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (Framework para Flat Design rápido y responsivo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de colores personalizados (Azul, Blanco, Dorado) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A365D', /* Azul principal corporativo */
+                        secondary: '#FFFFFF', /* Blanco */
+                        gold: '#D4AF37', /* Dorado metálico para letras y acentos */
+                        goldlight: '#F3E5AB',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos base y Flat Design */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #FFFFFF;
+            color: #1A365D;
+        }
+        
+        /* Animación suave para el menú móvil */
+        #mobile-menu {
+            transition: all 0.4s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobile-menu.open {
+            max-height: 500px; /* Altura suficiente para mostrar los enlaces */
+            opacity: 1;
+        }
+
+        /* Botón de Hamburguesa interactivo */
+        .hamburger-line {
+            transition: all 0.3s ease-in-out;
+            transform-origin: left center;
+        }
+        .hamburger.open .line-1 {
+            transform: rotate(45deg);
+        }
+        .hamburger.open .line-2 {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        .hamburger.open .line-3 {
+            transform: rotate(-45deg);
+        }
+
+        /* Utilidades visuales Flat Design */
+        .flat-card {
+            background-color: #FFFFFF;
+            border: 2px solid #1A365D;
+            border-radius: 0; /* Bordes cuadrados típicos del flat puro, o ligeramente redondeados */
+        }
+        .flat-tag {
+            background-color: #1A365D;
+            color: #D4AF37;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header class="bg-primary fixed w-full top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo / Nombre -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#inicio" class="font-heading font-bold text-2xl text-gold uppercase tracking-wider">
+                        <i class="fa-solid fa-plane-departure mr-2"></i>Deirdre
+                    </a>
+                </div>
+                
+                <!-- Menú Desktop -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-white hover:text-gold transition duration-300 font-semibold uppercase text-sm">Inicio</a>
+                    <a href="#perfil" class="text-white hover:text-gold transition duration-300 font-semibold uppercase text-sm">Sobre Mí</a>
+                    <a href="#experiencia" class="text-white hover:text-gold transition duration-300 font-semibold uppercase text-sm">Experiencia</a>
+                    <a href="#habilidades" class="text-white hover:text-gold transition duration-300 font-semibold uppercase text-sm">Habilidades</a>
+                    <a href="#educacion" class="text-white hover:text-gold transition duration-300 font-semibold uppercase text-sm">Educación</a>
+                </nav>
+
+                <!-- Botón Menú Móvil (Hamburguesa) -->
+                <div class="md:hidden flex items-center">
+                    <button id="hamburger-btn" class="hamburger flex flex-col justify-between w-8 h-6 focus:outline-none" aria-label="Menú">
+                        <span class="hamburger-line line-1 w-full h-1 bg-gold rounded"></span>
+                        <span class="hamburger-line line-2 w-full h-1 bg-gold rounded"></span>
+                        <span class="hamburger-line line-3 w-full h-1 bg-gold rounded"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="md:hidden bg-primary border-t border-gold border-opacity-30">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <a href="#inicio" class="mobile-link text-white hover:text-primary hover:bg-gold block px-3 py-2 text-base font-semibold uppercase transition duration-300">Inicio</a>
+                <a href="#perfil" class="mobile-link text-white hover:text-primary hover:bg-gold block px-3 py-2 text-base font-semibold uppercase transition duration-300">Sobre Mí</a>
+                <a href="#experiencia" class="mobile-link text-white hover:text-primary hover:bg-gold block px-3 py-2 text-base font-semibold uppercase transition duration-300">Experiencia</a>
+                <a href="#habilidades" class="mobile-link text-white hover:text-primary hover:bg-gold block px-3 py-2 text-base font-semibold uppercase transition duration-300">Habilidades</a>
+                <a href="#educacion" class="mobile-link text-white hover:text-primary hover:bg-gold block px-3 py-2 text-base font-semibold uppercase transition duration-300">Educación</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow pt-20"> <!-- pt-20 para compensar el header fijo -->
+
+        <!-- SECCIÓN HERO (INICIO) -->
+        <section id="inicio" class="bg-primary text-secondary py-20 lg:py-32 border-b-8 border-gold">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
+                <div class="w-full md:w-2/3 text-center md:text-left">
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-7xl font-bold text-gold mb-2 uppercase tracking-tight">Deirdre Simborth</h1>
+                    <h2 class="font-heading text-2xl sm:text-3xl text-secondary mb-6 font-semibold tracking-wide">Auxiliar de Vuelo</h2>
+                    
+                    <p class="text-lg mb-8 max-w-2xl text-justify md:text-left mx-auto md:mx-0">
+                        Auxiliar de vuelo con amplia experiencia y más de cinco años de trayectoria en aerolíneas internacionales. Comprometida con brindar un servicio excepcional, garantizar la seguridad de los pasajeros y propiciar una experiencia de vuelo cómoda, segura y memorable.
+                    </p>
+                    
+                    <div class="inline-block bg-gold p-1">
+                        <div class="border-2 border-primary border-dashed bg-gold px-6 py-4 text-primary font-bold text-lg italic text-center">
+                            "Safety is paramount, service is a point of pride, and passenger satisfaction is my objective on every flight."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-1/2 md:w-1/3 flex justify-center">
+                    <!-- Icono o ilustración minimalista en lugar de foto, siguiendo el estilo flat -->
+                    <div class="w-48 h-48 sm:w-64 sm:h-64 bg-gold rounded-full flex items-center justify-center border-8 border-secondary shadow-[0_0_0_8px_#1A365D] relative overflow-hidden">
+                       <i class="fa-solid fa-user-tie text-primary text-8xl"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SOBRE MÍ / DATOS -->
+        <section id="perfil" class="py-16 bg-secondary">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gold uppercase mb-10 text-center border-b-4 border-primary pb-2 inline-block">Información Personal & Contacto</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Contacto -->
+                    <div class="flat-card p-8">
+                        <h3 class="text-xl font-bold text-primary uppercase mb-6 flex items-center"><i class="fa-solid fa-address-card mr-3 text-gold text-2xl"></i> Contacto</h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-center"><i class="fa-solid fa-phone text-gold w-8 text-center"></i> +51 974848222</li>
+                            <li class="flex items-center"><i class="fa-solid fa-envelope text-gold w-8 text-center"></i> deirdre77@gmail.com</li>
+                            <li class="flex items-center"><i class="fa-solid fa-globe text-gold w-8 text-center"></i> www.deirdre.com</li>
+                            <li class="flex items-center"><i class="fa-solid fa-location-dot text-gold w-8 text-center"></i> Calle Arenales 123 M. M., Perú</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Datos Personales -->
+                    <div class="flat-card p-8 bg-primary text-secondary border-none">
+                        <h3 class="text-xl font-bold text-gold uppercase mb-6 flex items-center"><i class="fa-solid fa-circle-info mr-3 text-2xl"></i> Datos Personales</h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-center justify-between border-b border-gold border-opacity-30 pb-2">
+                                <span class="font-bold text-gold">Estatura:</span> <span>1.62 m</span>
+                            </li>
+                            <li class="flex items-center justify-between border-b border-gold border-opacity-30 pb-2">
+                                <span class="font-bold text-gold">Peso:</span> <span>50 kg</span>
+                            </li>
+                            <li class="flex items-center justify-between border-b border-gold border-opacity-30 pb-2">
+                                <span class="font-bold text-gold">Estado Civil:</span> <span>Soltera (Not Married)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN EXPERIENCIA PROFESIONAL -->
+        <section id="experiencia" class="py-16 bg-primary text-secondary">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gold uppercase mb-12 text-center">Experiencia Profesional</h2>
+                
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gold before:bg-opacity-30">
+                    
+                    <!-- Puesto 1 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <!-- Icono Timeline -->
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-gold bg-primary text-gold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow absolute left-0 md:left-1/2 transform -translate-x-0 md:-translate-x-1/2">
+                            <i class="fa-solid fa-star text-sm"></i>
+                        </div>
+                        
+                        <!-- Tarjeta -->
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] flat-card border-gold p-6 ml-14 md:ml-0 bg-secondary text-primary">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                <h3 class="font-bold text-xl uppercase">Lead Flight Attendant</h3>
+                                <span class="flat-tag px-3 py-1 text-sm font-bold mt-2 md:mt-0">2026 - Presente</span>
+                            </div>
+                            <ul class="list-disc pl-5 mt-4 space-y-2 text-sm">
+                                <li>Atender a los pasajeros de clase económica y ejecutiva en rutas internacionales hacia Asia, Oriente Medio, Europa y Australia.</li>
+                                <li>Garantizar la seguridad y el bienestar de los pasajeros durante todo el vuelo.</li>
+                                <li>Instruir y orientar a los nuevos auxiliares de vuelo sobre los protocolos de seguridad y los estándares de servicio.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Puesto 2 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <!-- Icono Timeline -->
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-gold bg-primary text-gold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow absolute left-0 md:left-1/2 transform -translate-x-0 md:-translate-x-1/2">
+                            <i class="fa-solid fa-plane text-sm"></i>
+                        </div>
+                        
+                        <!-- Tarjeta -->
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] flat-card border-primary p-6 ml-14 md:ml-0 bg-secondary text-primary">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                <h3 class="font-bold text-xl uppercase text-gold">Cabin Crew Member</h3>
+                                <span class="flat-tag px-3 py-1 text-sm font-bold mt-2 md:mt-0 bg-gold text-primary">2025 - 2025</span>
+                            </div>
+                            <ul class="list-disc pl-5 mt-4 space-y-2 text-sm">
+                                <li>Catering to passengers on both domestic and international routes.</li>
+                                <li>Perform cabin and safety equipment inspections prior to departure.</li>
+                                <li>Delivering food and beverage services in accordance with airline standards.</li>
+                                <li>Ensure passenger comfort throughout the flight.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Puesto 3 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <!-- Icono Timeline -->
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-gold bg-primary text-gold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow absolute left-0 md:left-1/2 transform -translate-x-0 md:-translate-x-1/2">
+                            <i class="fa-solid fa-seedling text-sm"></i>
+                        </div>
+                        
+                        <!-- Tarjeta -->
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] flat-card border-gold p-6 ml-14 md:ml-0 bg-secondary text-primary">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                                <h3 class="font-bold text-xl uppercase">Trainee Cabin Crew Member</h3>
+                                <span class="flat-tag px-3 py-1 text-sm font-bold mt-2 md:mt-0">2023 - 2024</span>
+                            </div>
+                            <ul class="list-disc pl-5 mt-4 space-y-2 text-sm">
+                                <li>Participate in rigorous training focused on flight safety and customer service.</li>
+                                <li>Execute cabin service procedures under the guidance of an instructor.</li>
+                                <li>Familiarize yourself with evacuation protocols and emergency response measures.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN HABILIDADES E IDIOMAS -->
+        <section id="habilidades" class="py-16 bg-secondary">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Idiomas -->
+                    <div>
+                        <h2 class="font-heading text-2xl font-bold text-primary uppercase mb-6 flex items-center"><i class="fa-solid fa-language text-gold mr-3"></i> Idiomas</h2>
+                        <div class="space-y-4">
+                            <div class="bg-primary p-4 flex justify-between items-center text-white font-bold border-l-8 border-gold">
+                                <span>Español</span> <span class="text-gold">Activo</span>
+                            </div>
+                            <div class="bg-primary p-4 flex justify-between items-center text-white font-bold border-l-8 border-gold">
+                                <span>Inglés</span> <span class="text-gold">Intermedio</span>
+                            </div>
+                            <div class="bg-primary p-4 flex justify-between items-center text-white font-bold border-l-8 border-gold">
+                                <span>Mandarín</span> <span class="text-gold">Nivel Básico</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div>
+                        <h2 class="font-heading text-2xl font-bold text-primary uppercase mb-6 flex items-center"><i class="fa-solid fa-gears text-gold mr-3"></i> Habilidades Clave</h2>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-secondary border-2 border-primary text-primary font-bold uppercase text-sm hover:bg-primary hover:text-white transition duration-300">Servicios al pasajero</span>
+                            <span class="px-4 py-2 bg-secondary border-2 border-primary text-primary font-bold uppercase text-sm hover:bg-primary hover:text-white transition duration-300">Seguridad aeroportuaria</span>
+                            <span class="px-4 py-2 bg-secondary border-2 border-primary text-primary font-bold uppercase text-sm hover:bg-primary hover:text-white transition duration-300">Comunicación efectiva</span>
+                            <span class="px-4 py-2 bg-secondary border-2 border-primary text-primary font-bold uppercase text-sm hover:bg-primary hover:text-white transition duration-300">Resolución de problemas</span>
+                            <span class="px-4 py-2 bg-secondary border-2 border-primary text-primary font-bold uppercase text-sm hover:bg-primary hover:text-white transition duration-300">Trabajo en equipo</span>
+                            <span class="px-4 py-2 bg-secondary border-2 border-primary text-primary font-bold uppercase text-sm hover:bg-primary hover:text-white transition duration-300">Gestión del tiempo</span>
+                            <span class="px-4 py-2 bg-secondary border-2 border-primary text-primary font-bold uppercase text-sm hover:bg-primary hover:text-white transition duration-300">Liderazgo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN EDUCACIÓN, CERTIFICACIONES Y PREMIOS -->
+        <section id="educacion" class="py-16 bg-primary text-secondary border-t border-gold border-opacity-30">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Educación -->
+                    <div class="flat-card bg-secondary text-primary p-6">
+                        <h2 class="font-heading text-xl font-bold text-gold uppercase mb-6 text-center"><i class="fa-solid fa-graduation-cap mr-2 text-primary"></i> Educación</h2>
+                        <div class="mb-6 pb-4 border-b border-primary border-opacity-20">
+                            <h3 class="font-bold text-lg uppercase">Aviación Comercial</h3>
+                            <p class="text-gold font-bold">Graduated in 2023</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg uppercase">Traducción e intérprete</h3>
+                            <p class="text-gold font-bold">Cultural 2022</p>
+                        </div>
+                    </div>
+
+                    <!-- Certificaciones -->
+                    <div class="flat-card bg-primary border-gold p-6 text-secondary">
+                        <h2 class="font-heading text-xl font-bold text-gold uppercase mb-6 text-center"><i class="fa-solid fa-certificate mr-2 text-secondary"></i> Certificaciones</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-gold mt-1 mr-3"></i>
+                                <span>Certificación de Tripulante de Cabina (CCC)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-gold mt-1 mr-3"></i>
+                                <span>Instrucción en seguridad de la aviación</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-gold mt-1 mr-3"></i>
+                                <span>Primeros auxilios y reanimación cardiopulmonar</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-gold mt-1 mr-3"></i>
+                                <span>Excelencia en atención al cliente</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Premios / Performance -->
+                    <div class="flat-card bg-secondary text-primary p-6">
+                        <h2 class="font-heading text-xl font-bold text-gold uppercase mb-6 text-center"><i class="fa-solid fa-trophy mr-2 text-primary"></i> Desempeño</h2>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="bg-primary text-secondary p-3 flex items-center justify-between">
+                                <span class="font-semibold text-sm">Best Crew Award</span>
+                                <span class="text-gold font-bold">2022</span>
+                            </div>
+                            <div class="bg-primary text-secondary p-3 flex items-center justify-between">
+                                <span class="font-semibold text-sm">Service Excellence Award</span>
+                                <span class="text-gold font-bold">2021</span>
+                            </div>
+                            <div class="bg-primary text-secondary p-3 flex items-center justify-between">
+                                <span class="font-semibold text-sm">Top 10% Cabin Crew</span>
+                                <span class="text-gold font-bold">2020</span>
+                            </div>
+                            <div class="bg-primary text-secondary p-3 flex items-center justify-between">
+                                <span class="font-semibold text-sm">Most Dedicated Crew</span>
+                                <span class="text-gold font-bold">2018</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-primary py-8 border-t-4 border-gold">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="font-heading font-bold text-2xl text-gold uppercase tracking-widest mb-4">Deirdre Simborth</h2>
+            <p class="text-secondary mb-4">Auxiliar de Vuelo Profesional</p>
+            <div class="flex justify-center space-x-6 text-gold">
+                <a href="mailto:deirdre77@gmail.com" class="hover:text-secondary transition duration-300 text-2xl"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" class="hover:text-secondary transition duration-300 text-2xl"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <p class="text-secondary text-sm mt-8 opacity-70">&copy; 2026 Deirdre Simborth. Diseño Flat Profile.</p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DE JAVASCRIPT PARA RESPONSIVIDAD Y MENÚ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            // Toggle del menú al hacer clic en la hamburguesa
+            hamburgerBtn.addEventListener('click', () => {
+                hamburgerBtn.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+            });
+
+            // Cerrar el menú suavemente al hacer clic en un enlace (móvil)
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
